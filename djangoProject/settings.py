@@ -69,7 +69,7 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
 CELERY_BEAT_SCHEDULE = {
     "gather_rss": {
         "task": "rss.tasks.gather_rss",
-        "schedule": crontab(hour="*/1"),
+        "schedule": crontab(minute="*/1"),
     },
 }
 

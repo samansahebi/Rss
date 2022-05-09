@@ -8,7 +8,8 @@ def gather_rss():
     rss = Rss.objects.all()
     for r in rss:
         data = feedparser.parse(r.url)
-        if not News.objects.filter(text=data['feed']).exists():
-            News.objects.create(rss=r, text=data['feed']).save()
+        for entry in data.entries:
+            if not News.objects.filter(text=entry['title']).exists():
+                News.objects.create(rss=r, text=entry['title']).save()
 
 
